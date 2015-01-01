@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 package project_euler_java;
+=======
+package problems;
+>>>>>>> 70af98a1f3eb843d7446cb6761dc4503fd66a7fe
 
 import java.util.Calendar;
 import java.util.Date;
 
 public class Problem19 {
+	private static final int numDaysYear = 365; // 30*4 + 28 + 7*31
+	private static final int numDaysLeapYear = 366; // num days of Feb. is 29 instead of 28
+	//XXX It can be done without dealing with leap years. 
+	
 	private static final Date knownDate;
 	static {
 		Calendar c = Calendar.getInstance();

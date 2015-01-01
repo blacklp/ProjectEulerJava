@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package project_euler_java;
+=======
+package problems;
+>>>>>>> 70af98a1f3eb843d7446cb6761dc4503fd66a7fe
 
 import java.math.BigInteger;
 
@@ -17,6 +21,18 @@ public class Problem15 {
 		} else {
 			return BigInteger.valueOf(num).multiply(factorial(num - 1));
 		}
+	}
+	
+	private long recLatticePaths(int gridSize, int x, int y) { // does not work..., but better with formula (C(a+b, a)
+		if (x == gridSize && y == gridSize) {
+			return 1;
+		}
+		long numPaths = 0;
+		if (x < gridSize && y < gridSize) { //XXX ||
+			numPaths += recLatticePaths(gridSize, x + 1, y);
+			numPaths += recLatticePaths(gridSize, x, y + 1);
+		}
+		return numPaths;
 	}
 	
 	public static void main(String[] args) {

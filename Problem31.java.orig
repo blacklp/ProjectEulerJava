@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package project_euler_java;
+=======
+package problems;
+>>>>>>> 70af98a1f3eb843d7446cb6761dc4503fd66a7fe
 
 public class Problem31 {
 //	private static final int[] coins = new int[] {200, 100, 50, 20, 10, 5, 2, 1};
@@ -32,8 +36,11 @@ public class Problem31 {
 		for (int i = 0; i < coins.length; i++) {
 			for (int j = coins[i]; j <= target; j++) {
 				ways[j] += ways[j-coins[i]]; // emulates the number of ways (at each iteration of giving change of j if they pay with coins[i]
+<<<<<<< HEAD
 											// in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 ï¿½ -> 0 coins?).
-											// in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 ï¿½ -> 0 coins?).
+=======
+											// in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 € -> 0 coins?).
+>>>>>>> 70af98a1f3eb843d7446cb6761dc4503fd66a7fe
 			}
 		}
 //		System.out.println();
@@ -43,7 +50,33 @@ public class Problem31 {
 //		System.out.println();
 		return ways[ways.length-1];
 	}
-		
+	
+	//XXX Wrong:
+	
+//	public int coinSums(int sum) {
+//		int result = 0;
+//		for (int i = 0; i < coins.length; i++) {
+//			int maxNumCoins = sum / coins[i];
+//			result++;
+//			result += coinSumForCoin(i, sum, maxNumCoins);
+//		}
+//		return result;
+//	}
+//	
+//	private int coinSumForCoin(int coin, int sum, int maxNumCoins) {
+//		int result = 0;
+//		for (int i = 1; i < maxNumCoins; i++) {
+//			for (int j = coin + 1; j < coins.length; j++) {
+//				if (sum - i*coins[coin] == 0) {
+//					result++;
+//				} else {
+//					result += coinSumForCoin(coin + 1, sum - i*coins[coin], sum / (coins[coin]));
+//				}
+//			}
+//		}
+//		return result;
+//	}
+	
 	public static void main(String[] args) {
 		Problem31 o = new Problem31();
 		long start = System.currentTimeMillis();
