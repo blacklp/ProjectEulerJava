@@ -5,8 +5,9 @@
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="main-class"  value="main.Problem10"/>
 
-    <path id="classpath">
-        <pathelement location="${build.dir}"/>
+    <path id="classpath.test">
+        <!--pathelement location="${test.dir}"/-->
+        <pathelement location="/lib/junit-4.10.jar"/>
     </path>
 
     <target name="clean">
