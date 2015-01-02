@@ -24,4 +24,16 @@
     </target>
     <target name="clean-build" depends="clean,jar"/>
     <target name="main" depends="clean,run"/>
+    <target name="junit" description="Runs the unit tests" depends="jar">
+        <delete dir="${junit.out.dir.xml}"/>
+        <mkdir  dir="${junit.out.dir.xml}"/>
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath refid="classpath.test"/>
+            <formatter type="xml"/>
+            <batchtest fork="yes" todir="${junit.out.dir.xml}">
+                <fileset dir="${src.dir}" includes="**/*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+    <target name="test" depends="junit"/>
 </project>
