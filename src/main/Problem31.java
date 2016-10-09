@@ -21,35 +21,35 @@ public class Problem31 {
 //		}
 //	}
 
-	// Dynamic Programming:
-	private static final int[] coins = new int[] {1, 2, 5, 10, 20, 50, 100, 200};
-	
-	public int coinSums(int target) {
+    // Dynamic Programming:
+    private static final int[] coins = new int[] {1, 2, 5, 10, 20, 50, 100, 200};
+
+    public int coinSums(int target) {
 //		int target = 200;
-		int[] ways = new int[target+1];
-		ways[0] = 1;
-		
-		for (int i = 0; i < coins.length; i++) {
-			for (int j = coins[i]; j <= target; j++) {
-				ways[j] += ways[j-coins[i]]; // emulates the number of ways (at each iteration of giving change of j if they pay with coins[i]
-											// in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 � -> 0 coins?).
-											// in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 � -> 0 coins?).
-			}
-		}
+        int[] ways = new int[target+1];
+        ways[0] = 1;
+
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = coins[i]; j <= target; j++) {
+                ways[j] += ways[j-coins[i]]; // emulates the number of ways (at each iteration of giving change of j if they pay with coins[i]
+                                            // in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 � -> 0 coins?).
+                                            // in order to make this work, we have to add ways[0] = 1 (only 1 way if it costs 0 � -> 0 coins?).
+            }
+        }
 //		System.out.println();
 //		for (int way : ways) {
 //			System.out.print(way + " ");
 //		}
 //		System.out.println();
-		return ways[ways.length-1];
-	}
-		
-	public static void main(String[] args) {
-		Problem31 o = new Problem31();
-		long start = System.currentTimeMillis();
-		int result = o.coinSums(200);
-		long end = System.currentTimeMillis();
-		System.out.println("Result: " + result);
-		System.out.println("Took " + (end - start)); // 9, 10, 12 ms.
-	}
+        return ways[ways.length-1];
+    }
+
+    public static void main(String[] args) {
+        Problem31 o = new Problem31();
+        long start = System.currentTimeMillis();
+        int result = o.coinSums(200);
+        long end = System.currentTimeMillis();
+        System.out.println("Result: " + result);
+        System.out.println("Took " + (end - start)); // 9, 10, 12 ms.
+    }
 }

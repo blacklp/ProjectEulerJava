@@ -6,27 +6,27 @@ import java.util.List;
 import java.util.Map;
 
 public class Problem26 {
-	/**
-	 * 
-	 * @param upper
-	 * @return the denominator d < upper for which 1/d has the longest recurring cycle 
-	 */
-	public int reciprocalCycles(int upper) {
-		int result = -1;
-		int currentLength = 0; // no cycle
-		
-		for (int i = 2; i < upper; i++) {
-			System.out.println("trying 1/" + i + "=" + (1/(double)i));
-			int cycleLength = getCycleLength(1, i);
-			if (cycleLength > currentLength) {
-				currentLength = cycleLength;
-				result = i;
-			}
-		}
-		System.out.println("result is case 1/" + result + " with cycle of length " + currentLength);
-		return result;
-	}
-	
+    /**
+     *
+     * @param upper
+     * @return the denominator d < upper for which 1/d has the longest recurring cycle
+     */
+    public int reciprocalCycles(int upper) {
+        int result = -1;
+        int currentLength = 0; // no cycle
+
+        for (int i = 2; i < upper; i++) {
+            System.out.println("trying 1/" + i + "=" + (1/(double)i));
+            int cycleLength = getCycleLength(1, i);
+            if (cycleLength > currentLength) {
+                currentLength = cycleLength;
+                result = i;
+            }
+        }
+        System.out.println("result is case 1/" + result + " with cycle of length " + currentLength);
+        return result;
+    }
+
 //	private int getCycleLength(int num, int den) {
 //		BigDecimal value = BigDecimal.valueOf(num).divide(BigDecimal.valueOf(den), new MathContext(100));
 //		System.out.println("value: " + value);
@@ -74,26 +74,26 @@ public class Problem26 {
 //		}
 //		return true;
 //	}
-	
-	private int getCycleLength(int num, int den) {
-		List<Integer> fraction = new LinkedList<>();
-		Map<Integer, Integer> reminders = new HashMap<>();
-		while (true) {
-			num *= 10;
-			int r = num % den;
-			int q = (num - r) / den;
-			if (r == 0) { // exact division
-				fraction.add(q);
-				break;
-			}
-			if (reminders.containsKey(r)) {
-				boolean foundCycle = false;
-				for (Map.Entry<Integer, Integer> entry : reminders.entrySet()) {
-					if (entry.getValue().equals(r) && fraction.get(entry.getKey()).equals(q)) {
-						// mark the cycle
-						fraction.add(entry.getKey(), -1); // -1 represents here "("
-						fraction.add(-2); // -2 represents here ")"
-						foundCycle = true;
+
+    private int getCycleLength(int num, int den) {
+        List<Integer> fraction = new LinkedList<>();
+        Map<Integer, Integer> reminders = new HashMap<>();
+        while (true) {
+            num *= 10;
+            int r = num % den;
+            int q = (num - r) / den;
+            if (r == 0) { // exact division
+                fraction.add(q);
+                break;
+            }
+            if (reminders.containsKey(r)) {
+                boolean foundCycle = false;
+                for (Map.Entry<Integer, Integer> entry : reminders.entrySet()) {
+                    if (entry.getValue().equals(r) && fraction.get(entry.getKey()).equals(q)) {
+                        // mark the cycle
+                        fraction.add(entry.getKey(), -1); // -1 represents here "("
+                        fraction.add(-2); // -2 represents here ")"
+                        foundCycle = true;
 //						System.out.print("found cycle: ");
 //						for (Integer i : fraction) {
 //							String str = i + "";
@@ -104,21 +104,21 @@ public class Problem26 {
 //							}
 //							System.out.print(str);
 //						}
-						System.out.println();
-						break;
-					}
-				}
-				if (foundCycle) {
-					break;
-				}
-			}
-			reminders.put(fraction.size(), r);
-			fraction.add(q);
-			num = r;
-		}
-		return fraction.indexOf(-2) - fraction.indexOf(-1);
-	}	
-	/// Binary (does not work...)
+                        System.out.println();
+                        break;
+                    }
+                }
+                if (foundCycle) {
+                    break;
+                }
+            }
+            reminders.put(fraction.size(), r);
+            fraction.add(q);
+            num = r;
+        }
+        return fraction.indexOf(-2) - fraction.indexOf(-1);
+    }
+    /// Binary (does not work...)
 //	private int getCycleLength(int num, int den) {
 //		int digit = -1;
 //		while (num >= den) {
@@ -155,12 +155,12 @@ public class Problem26 {
 //		}
 //		return digit;
 //	}
-	
-	public static void main(String[] args) {
-		Problem26 o = new Problem26();
-		int result = o.reciprocalCycles(1000);
-		System.out.println("result: " + result);
+
+    public static void main(String[] args) {
+        Problem26 o = new Problem26();
+        int result = o.reciprocalCycles(1000);
+        System.out.println("result: " + result);
 //		int result = o.getCycleLength(1, 5);
 //		System.out.println("result for " + (1d / 5d) + ": " + result);
-	}
+    }
 }
